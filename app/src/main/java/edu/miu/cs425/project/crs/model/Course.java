@@ -6,7 +6,9 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -29,12 +31,25 @@ public class Course {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns =  @JoinColumn(name = "prerequisite_id")
     )
-    private Set<Course> prerequisites = new HashSet<>();
+    private List<Course> prerequisites = new ArrayList<>();
 
     @ManyToMany(mappedBy = "prerequisites")
-    private Set<Course> courses = new HashSet<>();
+    private List<Course> courses = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "course")
-    private Set<Class> classes = new HashSet<>();
+    private List<Class> classes = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Course)) {
+            return false;
+        }
+        Course c = (Course) o;
+        return this.id == c.id && this.name.equals(c.name);
+    }
 }

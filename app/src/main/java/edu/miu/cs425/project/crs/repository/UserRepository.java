@@ -1,4 +1,4 @@
-package edu.miu.cs425.project.crs;
+package edu.miu.cs425.project.crs.repository;
 
 import edu.miu.cs425.project.crs.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

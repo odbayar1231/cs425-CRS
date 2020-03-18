@@ -1,6 +1,6 @@
 package edu.miu.cs425.project.crs.service;
 
-import edu.miu.cs425.project.crs.UserRepository;
+import edu.miu.cs425.project.crs.repository.UserRepository;
 import edu.miu.cs425.project.crs.model.MyUserDetails;
 import edu.miu.cs425.project.crs.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
