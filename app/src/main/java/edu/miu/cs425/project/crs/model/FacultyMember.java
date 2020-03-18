@@ -19,7 +19,7 @@ public class FacultyMember {
     private String fullName;
     private String contactNumber;
     @ManyToOne
-    @JoinColumn(name = "faculty_id")
+    @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
 
     @OneToMany(mappedBy = "facultyMember")
