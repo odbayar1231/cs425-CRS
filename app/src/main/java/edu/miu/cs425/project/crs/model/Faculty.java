@@ -20,4 +20,6 @@ public class Faculty {
     private String name;
     @OneToMany(mappedBy = "faculty")
     private List<Course> courses = new ArrayList<>();
+    @OneToMany(mappedBy = "faculty")
+    private List<FacultyMember> facultyMembers = new ArrayList<>();
 }
