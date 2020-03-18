@@ -1,5 +1,6 @@
 package edu.miu.cs425.project.crs.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +27,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/student/**").hasRole("STUDENT")
+                .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers("/**").hasRole("STUDENT")
                 .antMatchers("/h2-console/**").permitAll()
                 .and().formLogin();
         http.csrf().ignoringAntMatchers("/h2-console/**");
@@ -38,4 +39,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public PasswordEncoder getPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 }

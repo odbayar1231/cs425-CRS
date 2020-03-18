@@ -82,8 +82,6 @@ insert into course_prerequisite  values('CS544', 'CS472');
 
 -- authentication
 INSERT INTO ROLES (name) values ('ROLE_ADMIN');
-INSERT INTO ROLES (name) values ('ROLE_USER');
+INSERT INTO ROLES (name) values ('ROLE_STUDENT');
 
-insert into users (EMAIL_ADDRESS, FULL_NAME, PASSWORD, ROLE_ID) values('hajiyev.murad1@gmail.com', 'Murad Hajiyev', '123456', 2);
-
-
+insert into users (EMAIL_ADDRESS, FULL_NAME, PASSWORD, ROLE_ID) values('hajiyev.murad1@gmail.com', 'Murad Hajiyev', '$2y$12$TKCCDQsyQ0aOeVSf5Cmsc.4hQY4aDY4ncH/M7KnLZx0Pdf4wli0EO', 2);

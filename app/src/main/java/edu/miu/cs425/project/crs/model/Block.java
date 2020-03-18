@@ -30,7 +30,6 @@ public class Block {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate endDate;
 
-
     @OneToMany(mappedBy = "block")
     private Set<Class> classes = new HashSet<>();
 
