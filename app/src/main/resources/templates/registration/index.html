@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
 <head>
     <title>Courses</title>
 </head>
@@ -9,38 +12,17 @@
     <div class="container-fluid">
         <h1 class="mt-4">Available Class</h1>
         <h4>Choose an available class to be enrolled in</h4>
-        <div class="card">
-            <h5 class="card-header">Featured</h5>
+        <div class="card" th:each="block : ${blocks}">
+            <h5 class="card-header" th:text="${block.name} + ' (' + ${block.startDate} + ' - ' + ${block.endDate} + ')'"></h5>
             <div class="card-body">
                 <h5 class="card-title"></h5>
                 <table class="table">
                     <tbody>
-                        <tr>
-                            <td>CS525</td>
-                            <td>Advanced Software Development</td>
-                            <td>Guthrie</td>
-                            <td><span class="badge badge-primary badge-pill">1</span></td>
-                            <td><button class="btn btn-danger btn-sm">Register</button></td>
-                        </tr>
-                        <tr>
-                            <td>CS525</td>
-                            <td>Advanced Software Development</td>
-                            <td>Guthrie</td>
-                            <td><span class="badge badge-primary badge-pill">1</span></td>
-                            <td><button class="btn btn-danger btn-sm">Register</button></td>
-                        </tr>
-                        <tr>
-                            <td>CS525</td>
-                            <td>Advanced Software Development</td>
-                            <td>Guthrie</td>
-                            <td><span class="badge badge-primary badge-pill">1</span></td>
-                            <td><button class="btn btn-danger btn-sm">Register</button></td>
-                        </tr>
-                        <tr>
-                            <td>CS525</td>
-                            <td>Advanced Software Development</td>
-                            <td>Guthrie</td>
-                            <td><span class="badge badge-primary badge-pill">1</span></td>
+                        <tr th:each="class : ${block.classes}">
+                            <td th:text="${class.course.id}"></td>
+                            <td th:text="${class.course.name}">Advanced Software Development</td>
+                            <td th:text="${class.facultyMember.fullName}">Guthrie</td>
+                            <td><span class="badge badge-primary badge-pill" th:text="${class.availableSeats}"></span></td>
                             <td><button class="btn btn-danger btn-sm">Register</button></td>
                         </tr>
                     </tbody>

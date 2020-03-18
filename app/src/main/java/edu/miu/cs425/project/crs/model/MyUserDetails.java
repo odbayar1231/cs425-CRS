@@ -10,6 +10,7 @@ import java.util.List;
 
 public class MyUserDetails implements UserDetails {
 
+    private User user;
     private String emailAddress;
     private String password;
     private boolean active = true;
@@ -19,6 +20,7 @@ public class MyUserDetails implements UserDetails {
     }
 
     public MyUserDetails(User user) {
+        this.user = user;
         this.emailAddress = user.getEmailAddress();
         this.password = user.getPassword();
         this.authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole().getName()));
@@ -57,5 +59,9 @@ public class MyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.active;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
