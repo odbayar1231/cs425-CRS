@@ -33,4 +33,8 @@ public class Course {
 
     @ManyToMany(mappedBy = "prerequisites")
     private Set<Course> courses = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "course")
+    private Set<Class> classes = new HashSet<>();
 }
