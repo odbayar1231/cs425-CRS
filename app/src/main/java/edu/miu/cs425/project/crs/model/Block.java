@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -27,4 +29,9 @@ public class Block {
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private LocalDate endDate;
+
+
+    @OneToMany(mappedBy = "block")
+    private Set<Class> classes = new HashSet<>();
+
 }
