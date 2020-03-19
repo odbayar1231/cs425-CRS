@@ -4,7 +4,7 @@
 
 **<u>Credentials</u>**: 
 
-**Login**: student1
+**Login**: student1@gmail.com
 **Pass**: 123456
 
 
