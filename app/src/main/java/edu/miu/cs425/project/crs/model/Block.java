@@ -10,7 +10,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,7 +34,8 @@ public class Block {
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "block")
-    private Set<Class> classes = new HashSet<>();
+    @OrderBy(value = "id ASC")
+    private List<Class> classes = new ArrayList<>();
 
     public Block() {
     }
@@ -69,11 +72,11 @@ public class Block {
         this.endDate = endDate;
     }
 
-    public Set<Class> getClasses() {
+    public List<Class> getClasses() {
         return classes;
     }
 
-    public void setClasses(Set<Class> classes) {
+    public void setClasses(List<Class> classes) {
         this.classes = classes;
     }
 }

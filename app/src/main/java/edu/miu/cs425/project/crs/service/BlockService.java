@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface BlockService {
     List<Block> getAllActiveBlocks();
+    Block findBlockById(long id);
 }

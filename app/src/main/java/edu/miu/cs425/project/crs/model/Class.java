@@ -14,29 +14,35 @@ public class Class {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-
     @ManyToOne
     @JoinColumn(name = "block_id")
     private Block block;
-
     @ManyToOne
     @JoinColumn(name = "faculty_member_id")
     private FacultyMember facultyMember;
-
     @NotBlank
     private String roomNumber;
     @NotBlank
     private String building;
-
     @NotBlank
-    private int availableSeats;
-
-    @ManyToMany(mappedBy = "classes")
+    private int seatCapacity;
+    @ManyToMany(mappedBy = "registeredClasses")
     private List<User> students = new ArrayList<>();
+
+    @Transient
+    private String statusUnavailableClass = null;
+
+    @Transient
+    private boolean isRegistered = false;
+
+    @Transient
+    private boolean isAvailableToRegister = true;
+
+    @Transient
+    private int availableSeats = 0;
 
     public Class() {
     }
@@ -89,12 +95,12 @@ public class Class {
         this.building = building;
     }
 
-    public int getAvailableSeats() {
-        return availableSeats;
+    public int getSeatCapacity() {
+        return seatCapacity;
     }
 
-    public void setAvailableSeats(int availableSeats) {
-        this.availableSeats = availableSeats;
+    public void setSeatCapacity(int seatCapacity) {
+        this.seatCapacity = seatCapacity;
     }
 
     public List<User> getStudents() {
@@ -105,22 +111,48 @@ public class Class {
         this.students = students;
     }
 
+    public String getStatusUnavailableClass() {
+        return statusUnavailableClass;
+    }
 
-    public boolean isAvailableToRegister(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = ((MyUserDetails) authentication.getPrincipal()).getUser();
+    public void setStatusUnavailableClass(String statusUnavailableClass) {
+        this.statusUnavailableClass = statusUnavailableClass;
+    }
 
-        if (!user.getRole().getName().equals("ROLE_STUDENT"))
+    public boolean getIsRegistered() {
+        return isRegistered;
+    }
+
+    public void setIsRegistered(boolean registered) {
+        isRegistered = registered;
+    }
+
+    public void setIsAvailableToRegister(boolean availableToRegister) {
+        isAvailableToRegister = availableToRegister;
+    }
+
+    public boolean getIsAvailableToRegister() {
+        return isAvailableToRegister;
+    }
+
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Class)) {
             return false;
-
-        List<Course> prerequisites = this.getCourse().getPrerequisites();
-
-        if (prerequisites.size() == 0)
-            return false;
-
-
-        // check prerequisites has been taken or not
-        List<Course> registeredClasses = user.getClasses().stream().map(c -> c.getCourse()).collect(Collectors.toList());
-        return prerequisites.containsAll(registeredClasses);
+        }
+        Class c = (Class) o;
+        return this.getId() == c.getId();
     }
 }

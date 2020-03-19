@@ -50,6 +50,6 @@ public class Course {
             return false;
         }
         Course c = (Course) o;
-        return this.id == c.id && this.name.equals(c.name);
+        return this.id.equals(c.id) && this.name.equals(c.name);
     }
 }
