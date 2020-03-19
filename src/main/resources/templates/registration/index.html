@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout.html}">
+<head>
+    <title>Courses</title>
+</head>
+<body class="sb-nav-fixed">
+
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <h1 class="mt-4">Available Class</h1>
+        <h4>Choose an available class to enroll in</h4>
+        <div class="card" th:each="block : ${blocks}">
+            <h5 class="card-header" th:text="${block.name} + ' (' + ${block.startDate} + ' - ' + ${block.endDate} + ')'"></h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <table class="table">
+                    <tbody>
+                        <tr th:each="class : ${block.classes}" th:class="${class.isRegistered} ? is-registered : null">
+                            <form method="POST" th:action="@{/register}">
+                                <input type="hidden" th:value="${class.id}" name="id" />
+                                <td th:text="${class.course.id}"></td>
+                                <td th:text="${class.course.name}">Advanced Software Development</td>
+                                <td th:text="${class.facultyMember.fullName}">Guthrie</td>
+                                <td><span class="badge badge-primary badge-pill" th:text="${class.availableSeats}"></span></td>
+                                <td>
+                                    <button type="submit" class="btn btn-success btn-sm" th:if="${class.isAvailableToRegister && !class.isRegistered}">Register</button>
+                                    <span th:if="${!class.isAvailableToRegister && !class.isRegistered}" th:title="${class.statusUnavailableClass}"><i class="fas fa-info-circle" style="color: #ff2812; cursor: pointer;"></i></span>
+                                </td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
