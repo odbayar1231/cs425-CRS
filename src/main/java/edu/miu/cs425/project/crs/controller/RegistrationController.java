@@ -30,7 +30,7 @@ public class RegistrationController {
     public String displayAvailableClasses(Model model){
         List<Block> blocks = blockService.getAllActiveBlocks();
         model.addAttribute("blocks", blocks);
-        return "/registration/index";
+        return "registration/index";
     }
 
     @PostMapping(value = "/register")
@@ -38,7 +38,7 @@ public class RegistrationController {
         Class c = classService.findClassById(id);
         userService.removeClassesBelongTo(c.getBlock());
         userService.registerTo(c);
-        return "redirect:/classes";
+        return "redirect: slacclasses";
     }
 
 }
