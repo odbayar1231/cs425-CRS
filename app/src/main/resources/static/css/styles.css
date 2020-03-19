@@ -10212,3 +10212,9 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
+/* custom css*/
+.is-registered{
+  color: green;
+  font-weight: bold;
+}

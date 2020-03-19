@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BlockRepository extends JpaRepository<Block, Long> {
-    @Query("SELECT b FROM Block b WHERE b.startDate > CURRENT_DATE")
+    @Query("SELECT b FROM Block b WHERE b.startDate > CURRENT_DATE ORDER BY b.startDate")
     List<Block> findAllActiveBlocks();
 }

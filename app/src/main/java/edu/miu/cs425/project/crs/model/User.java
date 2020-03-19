@@ -7,10 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
@@ -39,5 +36,14 @@ public class User {
     @JoinTable(name = "registrations",
                 joinColumns = @JoinColumn(name = "student_id"),
                 inverseJoinColumns = @JoinColumn(name = "class_id"))
-    private List<Class> classes = new ArrayList<>();
+    private List<Class> registeredClasses = new ArrayList<>();
+
+
+    public void addClass(Class c){
+        registeredClasses.add(c);
+    }
+
+    public void removeClasses(List<Class> classes){
+        registeredClasses.removeAll(classes);
+    }
 }
