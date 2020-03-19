@@ -1,6 +1,6 @@
 ### Course Registration System
 
-**GITHUB**: https://github.com/muradhajiyev/cs425-CRS
+**GITHUB**: https://github.com/odbayar1231/cs425-CRS.git
 
 **<u>Credentials</u>**: 
 
