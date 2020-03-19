@@ -29,8 +29,7 @@
 
    1. Enroll a course per block. If there is no available seats and student does not fullfill preprequisite can not enroll. 
    2. Dashboard - simple dashboard to check available places for each course in seperated blocks.
-
-
+   3. While keeping mouse over red notifications in front of some courses, you will see the reason why the class can not be selected.
 
 
 
