@@ -38,7 +38,7 @@ public class RegistrationController {
         Class c = classService.findClassById(id);
         userService.removeClassesBelongTo(c.getBlock());
         userService.registerTo(c);
-        return "redirect: slacclasses";
+        return "redirect:/classes";
     }
 
 }
